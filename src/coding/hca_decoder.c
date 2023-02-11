@@ -313,6 +313,12 @@ void hca_set_encryption_key(hca_codec_data* data, uint64_t keycode, uint64_t sub
     ;VGM_LOG("HCA: keycode before=%08x%08x, subkey=%04x\n",
             (uint32_t)((hk->key >> 32) & 0xFFFFFFFF), (uint32_t)(hk->key & 0xFFFFFFFF), hk->subkey);
     if (subkey) {
+        ;VGM_LOG("HCA: subkey higher=%04x\n",
+                ( ((uint64_t)subkey << 16u) ));
+        ;VGM_LOG("HCA: subkey lower=%04x\n",
+                ( ((uint16_t)~subkey + 2u) ));
+        ;VGM_LOG("HCA: subkey transformed=%04x\n",
+                ( ((uint64_t)subkey << 16u) | ((uint16_t)~subkey + 2u) ));
         keycode = keycode * ( ((uint64_t)subkey << 16u) | ((uint16_t)~subkey + 2u) );
     }
     ;VGM_LOG("HCA: keycode after=%08x%08x, subkey=%04x\n",
