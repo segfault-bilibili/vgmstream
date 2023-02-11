@@ -69,7 +69,7 @@ export RMF SHELL CC AR STRIP WINDRES DLLTOOL
 
 DEF_CFLAGS += -ffast-math -O3 -Wall -Werror=format-security -Wvla -Wimplicit-function-declaration -Wignored-qualifiers
 
-VGM_DEBUG_FLAGS = 0
+VGM_DEBUG_FLAGS = 1
 ifeq ($(VGM_DEBUG_FLAGS),1)
   #DEF_CFLAGS += -O0
   DEF_CFLAGS += -g -DVGM_DEBUG_OUTPUT
