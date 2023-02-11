@@ -311,7 +311,7 @@ void test_hca_key(hca_codec_data* data, hca_keytest_t* hk) {
 
 void hca_set_encryption_key(hca_codec_data* data, uint64_t keycode, uint64_t subkey) {
     ;VGM_LOG("HCA: keycode before=%08x%08x, subkey=%04x\n",
-            (uint32_t)((hk->key >> 32) & 0xFFFFFFFF), (uint32_t)(hk->key & 0xFFFFFFFF), hk->subkey);
+            (uint32_t)((keycode >> 32) & 0xFFFFFFFF), (uint32_t)(keycode & 0xFFFFFFFF), subkey);
     if (subkey) {
         ;VGM_LOG("HCA: subkey higher=%04x\n",
                 ( ((uint64_t)subkey << 16u) ));
@@ -322,6 +322,6 @@ void hca_set_encryption_key(hca_codec_data* data, uint64_t keycode, uint64_t sub
         keycode = keycode * ( ((uint64_t)subkey << 16u) | ((uint16_t)~subkey + 2u) );
     }
     ;VGM_LOG("HCA: keycode after=%08x%08x, subkey=%04x\n",
-            (uint32_t)((hk->key >> 32) & 0xFFFFFFFF), (uint32_t)(hk->key & 0xFFFFFFFF), hk->subkey);
+            (uint32_t)((keycode >> 32) & 0xFFFFFFFF), (uint32_t)(keycode & 0xFFFFFFFF), subkey);
     clHCA_SetKey(data->handle, (unsigned long long)keycode);
 }
