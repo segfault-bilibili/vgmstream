@@ -1,6 +1,14 @@
 #ifndef _UTIL_LOG_H
 #define _UTIL_LOG_H
 
+#ifndef VGM_LOG_OUTPUT
+#define VGM_LOG_OUTPUT
+#endif
+#ifndef VGM_DEBUG_OUTPUT
+#define VGM_DEBUG_OUTPUT
+#endif
+
+
 /* Dumb logger utils (tuned for simplicity). Notes:
  * - must set callback/defaults to print anything
  * - mainly used to print info for users, like format detected but wrong size
