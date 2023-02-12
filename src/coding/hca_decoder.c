@@ -47,6 +47,7 @@ hca_codec_data* init_hca(STREAMFILE* sf) {
         VGM_LOG("HCA: unsupported header found, %i\n", status);
         goto fail;
     }
+    VGM_LOG("hfr_group_count = %d\n", getHfrGroupCount(data->handle));
 
     status = clHCA_getInfo(data->handle, &data->info); /* extract header info */
     if (status < 0) goto fail;
