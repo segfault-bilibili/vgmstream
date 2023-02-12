@@ -616,6 +616,10 @@ static unsigned int header_ceil2(unsigned int a, unsigned int b) {
     return (a / b + ((a % b) ? 1 : 0)); /* lib modulo: a - (a / b * b) */
 }
 
+unsigned int getHfrGroupCount(clHCA* hca) {
+    return hca->hfr_group_count;
+}
+
 int clHCA_DecodeHeader(clHCA* hca, const void *data, unsigned int size) {
     clData br;
     int res;
@@ -863,7 +867,6 @@ int clHCA_DecodeHeader(clHCA* hca, const void *data, unsigned int size) {
     hca->hfr_group_count = header_ceil2(
             hca->total_band_count - hca->base_band_count - hca->stereo_band_count,
             hca->bands_per_hfr_group);
-    VGM_LOG("hca->hfr_group_count =\n", hca->hfr_group_count);
 
     res = ath_init(hca->ath_curve, hca->ath_type, hca->sample_rate);
     if (res < 0)
